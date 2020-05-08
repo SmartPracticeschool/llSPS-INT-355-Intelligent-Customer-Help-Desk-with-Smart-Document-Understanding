@@ -1,0 +1,538 @@
+{
+  "intents": [
+    {
+      "intent": "Definition",
+      "examples": [
+        {
+          "text": "What is a trifecta?"
+        },
+        {
+          "text": "How do you define an exacta?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Hours",
+      "examples": [
+        {
+          "text": "What tine does the track open?"
+        },
+        {
+          "text": "What are your hours?"
+        },
+        {
+          "text": "When is betting counter open?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greeting",
+      "examples": [
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Thanks",
+      "examples": [
+        {
+          "text": "Gracias"
+        },
+        {
+          "text": "Thank you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Location",
+      "examples": [
+        {
+          "text": "Where are you located?"
+        },
+        {
+          "text": "How do I get to the track?"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "teller",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "teller",
+          "synonyms": [
+            "desk",
+            "betting table",
+            "counter",
+            "clerk",
+            "cashier"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "racetrack",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "track",
+          "synonyms": [
+            "horse racing",
+            "harness racing",
+            "raceway"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "sys-currency",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "bets",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "win",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "exacta",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Pick 6",
+          "synonyms": [
+            "pick6"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "show",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "trifecta",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "place",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "superfecta",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": false
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Teller",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The teller window opens at noon with the first race starting at 1:20pm"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1588826714786",
+      "conditions": "@teller",
+      "dialog_node": "node_3_1588826958425",
+      "previous_sibling": "node_8_1588826765922"
+    },
+    {
+      "type": "standard",
+      "title": "Racetrack",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The racetrack is open at noon every Thursday, Friday, Saturday and Sunday from May until September."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1588826714786",
+      "conditions": "@racetrack",
+      "dialog_node": "node_8_1588826765922"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "How much do you want to bet? "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_10_1588829446749",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1588829446765",
+      "previous_sibling": "handler_6_1588829446765"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please enter the amount you want to bet."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_10_1588829446749",
+      "conditions": "$amount",
+      "event_name": "nomatch",
+      "dialog_node": "handler_9_1588830274715",
+      "previous_sibling": "handler_3_1588829446765"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1588829446749",
+      "context": {
+        "amount": "@sys-currency"
+      },
+      "conditions": "@sys-currency",
+      "event_name": "input",
+      "dialog_node": "handler_6_1588829446765"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Select the horses."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1588829901035",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1588829901038",
+      "previous_sibling": "handler_4_1588829901038"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "You got your bet placed."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1588829901035",
+      "conditions": "$number",
+      "event_name": "filled",
+      "dialog_node": "handler_6_1588830312762",
+      "previous_sibling": "handler_1_1588829901038"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1588829901035",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_4_1588829901038"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_8_1588828056364",
+      "variable": "$number",
+      "dialog_node": "slot_3_1588829901035",
+      "previous_sibling": "slot_10_1588829446749"
+    },
+    {
+      "type": "standard",
+      "parent": "node_8_1588828056364",
+      "dialog_node": "node_3_1588828256232",
+      "previous_sibling": "slot_3_1588829901035"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_8_1588828056364",
+      "variable": "$amount",
+      "dialog_node": "slot_10_1588829446749"
+    },
+    {
+      "type": "standard",
+      "title": "Exacta",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A Exacta requires you to pick two horses in one race to run FIRST and SECOND in EXACT ORDER."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1588827171285",
+      "conditions": "@bets:exacta",
+      "dialog_node": "node_9_1588827627237",
+      "previous_sibling": "node_2_1588827424310"
+    },
+    {
+      "type": "standard",
+      "title": "Trifecta",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A Trifecta requires you to pick three horses in one race to run FIRST, SECOND and THIRD in EXACT ORDER."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1588827171285",
+      "conditions": "@bets:trifecta",
+      "dialog_node": "node_2_1588827424310"
+    },
+    {
+      "type": "standard",
+      "title": "Location",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The race track is located at Illinois, California."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Location",
+      "dialog_node": "node_6_1588827969373",
+      "previous_sibling": "node_10_1588826714786"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "digress_in": "does_not_return",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_10_1588826607427",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Thank you",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Glad to be the assistance!"
+              },
+              {
+                "text": "You're very welcome!"
+              },
+              {
+                "text": "Anytime"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Thanks",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_10_1588826607427",
+      "previous_sibling": "node_7_1588826476268"
+    },
+    {
+      "type": "frame",
+      "title": "Betting",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "amount": "@sys-currency.literal"
+      },
+      "conditions": "@bets:trifecta",
+      "dialog_node": "node_8_1588828056364",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Glossary",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_2_1588827424310"
+      },
+      "conditions": "#Definition",
+      "dialog_node": "node_4_1588827171285",
+      "previous_sibling": "node_6_1588827969373"
+    },
+    {
+      "type": "standard",
+      "title": "Hours",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_8_1588826765922"
+      },
+      "conditions": "#Hours",
+      "dialog_node": "node_10_1588826714786",
+      "previous_sibling": "node_8_1588828056364"
+    },
+    {
+      "type": "standard",
+      "title": "Greeting",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi there! I'm here to help. What can I answer for you today?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Greeting",
+      "dialog_node": "node_7_1588826476268",
+      "previous_sibling": "node_4_1588827171285"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi! My name is RaceBOT. I can answer questions about the racetrack including hours, location, and help with betting definitions. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "RaceBOT",
+  "language": "en",
+  "description": ""
+}
