@@ -1,0 +1,710 @@
+{
+  "intents": [
+    {
+      "intent": "CareStore",
+      "examples": [
+        {
+          "text": "Cancel my appointment with agent"
+        },
+        {
+          "text": "Book my appointment with agent"
+        },
+        {
+          "text": "customercarestore"
+        },
+        {
+          "text": "carestore"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Buy",
+      "examples": [
+        {
+          "text": "Directions to buy coffee maker"
+        },
+        {
+          "text": "How can I purchase one?"
+        },
+        {
+          "text": "How to buy coffee maker?"
+        },
+        {
+          "text": "At what price coffee maker is sold?"
+        },
+        {
+          "text": "What is the product price?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Product_details",
+      "examples": [
+        {
+          "text": "In what colors is coffee machine available?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "product_info_from_manual",
+      "examples": [
+        {
+          "text": "Give me steps to make coffee"
+        },
+        {
+          "text": "How to adjust the cappuccino length?"
+        },
+        {
+          "text": "How to fill the milk carafe?"
+        },
+        {
+          "text": "What do the icons on display mean?"
+        },
+        {
+          "text": "What are the safety instructions to follow?"
+        },
+        {
+          "text": "How to adjust the frothed milk length?"
+        },
+        {
+          "text": "How do I clean the water tank?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greeting",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Good Afternoon"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Definition",
+      "examples": [
+        {
+          "text": "What is a Cappuccino?"
+        },
+        {
+          "text": "What is an Americano?"
+        },
+        {
+          "text": "What is an expresso?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Delivery",
+      "examples": [
+        {
+          "text": "How is the product packaged?"
+        },
+        {
+          "text": "How many days it takes for delivery?"
+        },
+        {
+          "text": "How is the product delivered?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Thanks",
+      "examples": [
+        {
+          "text": "Gracias"
+        },
+        {
+          "text": "Thanks"
+        },
+        {
+          "text": "Thank you"
+        },
+        {
+          "text": "Thanks a lot"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "product_details",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "color",
+          "synonyms": [
+            "colour",
+            "colors"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "strength",
+          "synonyms": [
+            "strong",
+            "flexible",
+            "unbreakable"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "user interface",
+          "synonyms": [
+            "ui",
+            "features",
+            "userfriendly interface"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "carestore",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "cancel",
+          "synonyms": [
+            "appointment"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "hours",
+          "synonyms": [
+            "At what time are centers open"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "location",
+          "synonyms": [
+            "place",
+            "places",
+            "where"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "customerappointment",
+          "synonyms": [
+            "appointment"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "definition",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "americano",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "expresso",
+          "synonyms": [
+            "brew-expresso"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "cappuccino",
+          "synonyms": [
+            "mocha",
+            "latte",
+            "cappuccinos"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "product_price",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "price",
+          "synonyms": [
+            "cost",
+            "value",
+            "costs",
+            "expense",
+            "amount"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "webhooks": [
+    {
+      "url": "https://eu-gb.functions.cloud.ibm.com/api/v1/web/17ce024%40charusat.edu.in_dev/default/smart-chatbot.json",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Please try again later."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1589362839563",
+      "conditions": "anything_else",
+      "dialog_node": "response_3_1589362903035",
+      "previous_sibling": "response_8_1589362899780"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "$webhook_result_1"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1589362839563",
+      "conditions": "$webhook_result_1",
+      "dialog_node": "response_8_1589362899780"
+    },
+    {
+      "type": "standard",
+      "title": "Ui",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The coffee machine has a user-friendly interface and has attractive features."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1589356996204",
+      "conditions": "@product_details:(user interface)",
+      "dialog_node": "node_3_1589357559335",
+      "previous_sibling": "node_3_1589357344257"
+    },
+    {
+      "type": "standard",
+      "title": "colors",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The available colors are black, grey and brown."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1589356996204",
+      "conditions": "@product_details:color",
+      "dialog_node": "node_8_1589439522243",
+      "previous_sibling": "node_3_1589357559335",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "strength",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The coffee machine is not fragile and overall design supports the surface of the body."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1589356996204",
+      "conditions": "@product_details:strength",
+      "dialog_node": "node_3_1589357344257",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "expresso",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "An espresso shot contains around 1 oz of brewed liquid and is made from 6 to 8 grams of ground coffee. ... The extraction is made by passing hot water - 190 to 202 °F (the espresso brewing temperature in Celsius is 88-94 °C) with a pressure of 9 atmospheres, through the ground coffee"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589357705842",
+      "conditions": "@definition:expresso",
+      "dialog_node": "node_7_1589439106150",
+      "previous_sibling": "node_10_1589357847779",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "cappuccino",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "A cappuccino is an espresso-based coffee drink that originated in Italy, and is traditionally prepared with steamed milk foam. Variations of the drink involve the use of cream instead of milk, and flavoring with cinnamon or chocolate powder. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589357705842",
+      "conditions": "@definition:cappuccino",
+      "dialog_node": "node_10_1589357847779",
+      "previous_sibling": "node_1_1589357770512",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "americano",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Caffè Americano is a type of coffee drink prepared by diluting an espresso with hot water, giving it a similar strength to, but different flavor from, traditionally brewed coffee. The strength of an Americano varies with the number of shots of espresso and the amount of water added."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589357705842",
+      "conditions": "@definition:americano",
+      "dialog_node": "node_1_1589357770512",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "location",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Our customer care centers are located at South Dakota, Illinois and Dallas"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589362417974",
+      "conditions": "@carestore:location",
+      "dialog_node": "node_6_1589439745327",
+      "previous_sibling": "node_7_1589362583883"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your appointment with our customer care agent is booked."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589362417974",
+      "conditions": "@carestore:customerappointment",
+      "dialog_node": "node_8_1589362538501",
+      "previous_sibling": "node_9_1589362490689",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your customer care appointment is cancelled."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589362417974",
+      "conditions": "@carestore:cancel",
+      "dialog_node": "node_7_1589362583883",
+      "previous_sibling": "node_8_1589362538501",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We are open at Thursday, Friday and Saturday from 10 am to 5 pm."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1589362417974",
+      "conditions": "@carestore:hours",
+      "dialog_node": "node_9_1589362490689",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1589356161317",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "customercare",
+      "context": {},
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "@carestore || #CareStore",
+      "dialog_node": "node_1_1589362417974",
+      "previous_sibling": "node_6_1589362839563",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Price",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The product price is fifty dollars. You can buy it from www.philips.com"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@product_price:price || #Buy",
+      "dialog_node": "node_1_1589356239974",
+      "previous_sibling": "node_8_1589356996204",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "product_details",
+      "output": {
+        "generic": []
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "@product_details",
+      "dialog_node": "node_8_1589356996204",
+      "previous_sibling": "node_1_1589357705842",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "definition",
+      "output": {
+        "generic": []
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "@definition",
+      "dialog_node": "node_1_1589357705842",
+      "previous_sibling": "node_1_1589362417974",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Ask about product",
+      "actions": [
+        {
+          "name": "main_webhook",
+          "type": "webhook",
+          "parameters": {
+            "input": "<?input.text?>"
+          },
+          "result_variable": "webhook_result_1"
+        }
+      ],
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#product_info_from_manual",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1589362839563",
+      "previous_sibling": "node_1_1589443555535",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Thank you",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Glad to be your assistance."
+              },
+              {
+                "text": "Your welcome"
+              },
+              {
+                "text": "Anytime"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#Thanks",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_3_1589356161317",
+      "previous_sibling": "node_1_1589356239974",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. My name is Coffeebot. I answer questions related to super automatic coffee machine including product details, working and directions to use. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome || #Greeting",
+      "dialog_node": "node_1_1589443555535",
+      "disambiguation_opt_out": true
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Smart-Document-Chatbot",
+  "language": "en",
+  "description": ""
+}
